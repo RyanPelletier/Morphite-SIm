@@ -1333,38 +1333,42 @@
 
         function applyAssemblyFolding(progress) {
             const p = Math.max(0, Math.min(1, progress));
-            const foldAngle = p * (Math.PI * 0.42);
-            const halfSpan = BEAM_SPAN / 2;
-
-            leftSpineMesh.rotation.z = foldAngle;
-            rightSpineMesh.rotation.z = foldAngle;
-
-            leftSpineMesh.position.x = -halfSpan * (1 - p * 0.5) * Math.cos(foldAngle);
-            leftSpineMesh.position.y = halfSpan * Math.sin(foldAngle) * p * 0.5 - 0.1;
-
-            rightSpineMesh.rotation.z = foldAngle;
-            rightSpineMesh.position.x = leftSpineMesh.position.x;
-            rightSpineMesh.position.y = leftSpineMesh.position.y;
-
             const slatCount = deckSlatGroup.length;
+
+            // Spines remain completely stationary at their original positions
+            leftSpineMesh.position.set(0, -parseFloat(document.getElementById('param-spine-height').value) / 2000, -parseFloat(document.getElementById('param-spine-spacing').value) / 2);
+            leftSpineMesh.rotation.set(0, 0, 0);
+
+            rightSpineMesh.position.set(0, -parseFloat(document.getElementById('param-spine-height').value) / 2000, parseFloat(document.getElementById('param-spine-spacing').value) / 2);
+            rightSpineMesh.rotation.set(0, 0, 0);
+
+            // Deck slats fold into an accordion stack in the center of the span
+            const startX = -BEAM_SPAN / 2;
+            const totalWidth = BEAM_SPAN;
+            const compressedWidth = totalWidth * (1 - p * 0.85); // Compress width as progress increases
+
             deckSlatGroup.forEach((slat, i) => {
-                const norm = (i / (slatCount - 1)) - 0.5;
-                const archY = Math.sin(Math.abs(norm) * Math.PI) * p * 1.8;
+                const norm = i / (slatCount - 1); // 0 to 1
                 
-                slat.position.x = norm * BEAM_SPAN * (1 - p * 0.55);
-                slat.position.y = (slat.position.y || 0) + archY;
-                slat.rotation.z = norm * foldAngle * 1.5;
+                // Accordion stacking position in center
+                const targetX = (norm - 0.5) * compressedWidth;
+                
+                // Alternate stacking height for accordion zig-zag effect
+                const stackHeight = i * 0.015 * p;
+                const accordionAngle = (i % 2 === 0 ? 1 : -1) * p * 1.57; // Alternate tilt angles up to 90 degrees
+
+                slat.position.x = targetX;
+                slat.position.y = 0.05 + stackHeight;
+                slat.position.z = 0;
+                slat.rotation.set(accordionAngle, 0, 0);
 
                 const bLeft = fastenerNutGroup[i * 2];
                 const bRight = fastenerNutGroup[i * 2 + 1];
                 if (bLeft && bRight) {
-                    bLeft.position.x = slat.position.x;
-                    bLeft.position.y = slat.position.y + 0.05;
-                    bLeft.rotation.z = slat.rotation.z;
-
-                    bRight.position.x = slat.position.x;
-                    bRight.position.y = slat.position.y + 0.05;
-                    bRight.rotation.z = slat.rotation.z;
+                    bLeft.position.set(targetX, 0.08 + stackHeight, -parseFloat(document.getElementById('param-spine-spacing').value) / 2);
+                    bLeft.rotation.set(accordionAngle, 0, 0);
+                    bRight.position.set(targetX, 0.08 + stackHeight, parseFloat(document.getElementById('param-spine-spacing').value) / 2);
+                    bRight.rotation.set(accordionAngle, 0, 0);
                 }
             });
         }
