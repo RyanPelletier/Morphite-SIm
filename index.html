@@ -330,141 +330,58 @@
                 </div>
 
                 <!-- SECTION 2: PERPENDICULAR DECK UNITS (FLEXIBLE SKIN) -->
-                <div class="glass-card p-3.5 rounded-xl space-y-3">
-                    <div class="flex items-center justify-between border-b border-slate-200/80 pb-2">
-                        <span class="font-bold text-amber-700 flex items-center gap-1.5">
-                            <i class="fa-solid fa-bars"></i> Perpendicular Deck Units
-                        </span>
-                        <span class="text-[10px] text-slate-500">(Top Flexible Skin & Fasteners)</span>
-                    </div>
-
-                    <!-- Slat Count -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="text-slate-700 font-medium">Deck Slat Density / Unit Count</span>
-                            <span id="val-slat-count" class="text-amber-600 font-bold">32 units</span>
-                        </div>
-                        <input type="range" id="param-slat-count" min="10" max="60" step="2" value="32" oninput="updateSimulation()" class="w-full">
-                    </div>
-
-                    <!-- Slat Thickness -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="text-slate-700 font-medium">Deck Slat Thickness</span>
-                            <span id="val-slat-thickness" class="text-amber-600 font-bold">25 mm</span>
-                        </div>
-                        <input type="range" id="param-slat-thickness" min="10" max="60" step="2" value="25" oninput="updateSimulation()" class="w-full">
-                    </div>
-
-                    <!-- Slat Flexibility Factor -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="text-slate-700 font-medium">Slat Transverse Flexibility</span>
-                            <span id="val-slat-flex" class="text-amber-600 font-bold">High (Elastic)</span>
-                        </div>
-                        <input type="range" id="param-slat-flex" min="0.1" max="3.0" step="0.1" value="1.2" oninput="updateSimulation()" class="w-full">
-                    </div>
-
-                    <!-- Connection Fastener Type -->
-                    <div>
-                        <label class="block text-slate-700 mb-1 font-medium">Holding Mechanism (Fastener Type)</label>
-                        <select id="param-joint-type" onchange="updateSimulation()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-slate-800 focus:outline-none focus:border-sky-500 shadow-sm">
-                            <option value="pinned">Pinned Top Fastener Bushing (Flexible Skin)</option>
-                            <option value="clamped">Friction Clamped Nut & Washer Assembly</option>
-                            <option value="elastomeric">Elastomeric Rubber Bushing Cushion</option>
-                        </select>
-                    </div>
-
-                    <!-- Deflection Magnifier -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="text-slate-700 font-medium">Visual Deflection Magnifier</span>
-                            <span id="val-deflection-scale" class="text-amber-600 font-bold">5.0x</span>
-                        </div>
-                        <input type="range" id="param-deflection-scale" min="1.0" max="15.0" step="0.5" value="5.0" oninput="updateSimulation()" class="w-full">
-                    </div>
+            <div class="glass-card p-3.5 rounded-xl space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-200/80 pb-2">
+                    <span class="font-bold text-amber-700 flex items-center gap-1.5">
+                        <i class="fa-solid fa-bars"></i> Surrounding Deck Frames
+                    </span>
+                    <span class="text-[10px] text-slate-500">(Outline Slat Matrix & Rubber Hinges)</span>
                 </div>
 
-                <!-- SECTION 3: LOAD TESTING & FORCE APPLICATION -->
-                <div class="glass-card p-3.5 rounded-xl space-y-3">
-                    <div class="flex items-center justify-between border-b border-slate-200/80 pb-2">
-                        <span class="font-bold text-rose-700 flex items-center gap-1.5">
-                            <i class="fa-solid fa-weight-hanging"></i> Load Application
-                        </span>
-                        <span class="text-[10px] text-slate-500">(Forces & Dynamics)</span>
+                <!-- Slat Count -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-slate-700 font-medium">Zig-Zag Frame Density / Unit Count</span>
+                        <span id="val-slat-count" class="text-amber-600 font-bold">32 units</span>
                     </div>
-
-                    <!-- Force Magnitude -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="text-slate-700 font-medium">Applied Vertical Force</span>
-                            <span id="val-force-mag" class="text-rose-600 font-bold">15.0 kN</span>
-                        </div>
-                        <input type="range" id="param-force-mag" min="1" max="100" step="1" value="15" oninput="updateSimulation()" class="w-full">
-                    </div>
-
-                    <!-- Load Type -->
-                    <div>
-                        <label class="block text-slate-700 mb-1 font-medium">Load Distribution</label>
-                        <select id="param-load-type" onchange="updateSimulation()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-slate-800 focus:outline-none focus:border-sky-500 shadow-sm">
-                            <option value="point">Concentrated Point Load (Click / Drag on Deck)</option>
-                            <option value="distributed">Uniformly Distributed Load (UDL)</option>
-                            <option value="moving">Dynamic Moving Vehicle / Roller Test</option>
-                            <option value="eccentric">Off-Center Asymmetric Load (Twisting / Torsion)</option>
-                        </select>
-                    </div>
-
-                    <!-- Load Position X -->
-                    <div id="wrapper-load-pos-x">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-slate-700 font-medium">Longitudinal Load Position ($X$)</span>
-                            <span id="val-load-pos-x" class="text-rose-600 font-bold">Center (50%)</span>
-                        </div>
-                        <input type="range" id="param-load-pos-x" min="5" max="95" step="1" value="50" oninput="updateSimulation()" class="w-full">
-                    </div>
-
-                    <!-- Load Position Y (Transverse Offset) -->
-                    <div id="wrapper-load-pos-y">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-slate-700 font-medium">Transverse Load Offset ($Y$)</span>
-                            <span id="val-load-pos-y" class="text-rose-600 font-bold">Centered (0.0 m)</span>
-                        </div>
-                        <input type="range" id="param-load-pos-y" min="-1.0" max="1.0" step="0.1" value="0.0" oninput="updateSimulation()" class="w-full">
-                    </div>
-
-                    <!-- Motion Controls -->
-                    <div class="pt-1 flex items-center justify-between">
-                        <span class="text-slate-700 font-medium">Dynamic Motion Speed</span>
-                        <button id="btn-play-animation" onclick="toggleAnimation()" class="px-3 py-1 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-semibold flex items-center gap-1.5 transition-colors shadow-sm">
-                            <i id="icon-play" class="fa-solid fa-play text-xs"></i>
-                            <span id="label-play">Start Vehicle</span>
-                        </button>
-                    </div>
+                    <input type="range" id="param-slat-count" min="10" max="60" step="2" value="32" oninput="updateSimulation()" class="w-full">
                 </div>
 
-            </div>
-        </aside>
-
-        <!-- Bottom Telemetry Chart Panel -->
-        <div id="telemetry-panel" class="z-10 absolute bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-[500px] glass-panel rounded-2xl p-3 transition-all duration-300">
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-2 px-1">
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-chart-line text-sky-600 text-xs"></i>
-                    <h3 class="font-bold text-slate-800 text-xs">Spine Real-Time FEA Telemetry Curves</h3>
-                </div>
-                
-                <!-- Telemetry Diagram Mode Switcher -->
-                <div class="flex items-center space-x-1 bg-slate-200/80 p-0.5 rounded-lg text-[10px]">
-                    <button id="btn-chart-mode-def" onclick="setChartMode('deflection')" class="px-2 py-0.5 rounded bg-white text-sky-700 font-bold shadow-sm">Deflection ($y$)</button>
-                    <button id="btn-chart-mode-mom" onclick="setChartMode('moment')" class="px-2 py-0.5 rounded text-slate-600 hover:text-slate-900">Moment ($M$)</button>
-                    <button id="btn-chart-mode-shr" onclick="setChartMode('shear')" class="px-2 py-0.5 rounded text-slate-600 hover:text-slate-900">Shear ($V$)</button>
+                <!-- Slat Thickness -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-slate-700 font-medium">Frame Profile Thickness</span>
+                        <span id="val-slat-thickness" class="text-amber-600 font-bold">25 mm</span>
+                    </div>
+                    <input type="range" id="param-slat-thickness" min="10" max="60" step="2" value="25" oninput="updateSimulation()" class="w-full">
                 </div>
 
-                <div class="flex items-center space-x-2">
-                    <span class="text-[10px] text-slate-500">Span $L = 8.0 \text{ m}$</span>
-                    <button onclick="toggleTelemetryPanel()" class="text-slate-500 hover:text-slate-800 text-xs px-1">
-                        <i id="icon-telemetry-toggle" class="fa-solid fa-chevron-down"></i>
-                    </button>
+                <!-- Slat Flexibility Factor -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-slate-700 font-medium">Rubber Hinge Flexibility</span>
+                        <span id="val-slat-flex" class="text-amber-600 font-bold">High (Elastic)</span>
+                    </div>
+                    <input type="range" id="param-slat-flex" min="0.1" max="3.0" step="0.1" value="1.2" oninput="updateSimulation()" class="w-full">
+                </div>
+
+                <!-- Connection Fastener Type -->
+                <div>
+                    <label class="block text-slate-700 mb-1 font-medium">Hinge Mechanism (Fastener Type)</label>
+                    <select id="param-joint-type" onchange="updateSimulation()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-slate-800 focus:outline-none focus:border-sky-500 shadow-sm">
+                        <option value="elastomeric">Elastomeric Rubber Bushing Cushion</option>
+                        <option value="pinned">Pinned Articulation Bushing</option>
+                        <option value="clamped">Friction Clamped Joint</option>
+                    </select>
+                </div>
+
+                <!-- Deflection Magnifier -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-slate-700 font-medium">Visual Deflection Magnifier</span>
+                        <span id="val-deflection-scale" class="text-amber-600 font-bold">5.0x</span>
+                    </div>
+                    <input type="range" id="param-deflection-scale" min="1.0" max="15.0" step="0.5" value="5.0" oninput="updateSimulation()" class="w-full">
                 </div>
             </div>
 
@@ -528,14 +445,13 @@
         // Structural Mesh Objects in Three.js Scene
         let leftSpineMesh, rightSpineMesh;
         let deckSlatGroup = [];
-        let fastenerNutGroup = [];
+        let rubberHingeGroup = [];
         let loadArrowMesh, loadMarkerMesh;
         let supportPillars = [];
         let reactionForceArrows = [];
         let gridHelper;
         let raycaster, mouse;
 
-        // Number of transverse segments on each slat geometry for smooth local bending curvature
         const SLAT_TRANSVERSE_SEGMENTS = 20;
 
         // Material Mechanical Properties with high-contrast color palettes
@@ -547,9 +463,8 @@
             wood: { name: 'Engineered Timber', E: 12e9, yieldStrength: 40e6, color: 0xd97706, metallic: 0.0, roughness: 0.8 }
         };
 
-        // System Constants
-        const BEAM_SPAN = 8.0; // 8 meters total span (-4.0 to +4.0 in 3D)
-        const DECK_WIDTH = 2.4; // 2.4 meters deck width
+        const BEAM_SPAN = 8.0;
+        const DECK_WIDTH = 2.4;
         const SPAN_NUM_SEGMENTS = 100;
 
         function initThreeJS() {
@@ -684,22 +599,20 @@
         }
 
         function createStructuralGeometry() {
-            // Remove previous structural meshes
             if (leftSpineMesh) scene.remove(leftSpineMesh);
             if (rightSpineMesh) scene.remove(rightSpineMesh);
             deckSlatGroup.forEach(mesh => scene.remove(mesh));
-            fastenerNutGroup.forEach(mesh => scene.remove(mesh));
+            rubberHingeGroup.forEach(mesh => scene.remove(mesh));
             supportPillars.forEach(mesh => scene.remove(mesh));
             reactionForceArrows.forEach(arrow => scene.remove(arrow));
             if (loadArrowMesh) scene.remove(loadArrowMesh);
             if (loadMarkerMesh) scene.remove(loadMarkerMesh);
 
             deckSlatGroup = [];
-            fastenerNutGroup = [];
+            rubberHingeGroup = [];
             supportPillars = [];
             reactionForceArrows = [];
 
-            // Read Parameters
             const spineSpacing = parseFloat(document.getElementById('param-spine-spacing').value);
             const spineHeightMm = parseFloat(document.getElementById('param-spine-height').value);
             const slatCount = parseInt(document.getElementById('param-slat-count').value);
@@ -711,10 +624,7 @@
             const matKey = document.getElementById('param-spine-material').value;
             const matProp = MATERIALS[matKey];
 
-            // Create Left and Right Spine Box Geometries with 100 longitudinal segments
             const spineGeo = new THREE.BoxGeometry(BEAM_SPAN, spineHeightM, spineWidthM, SPAN_NUM_SEGMENTS, 1, 1);
-            
-            // Material with Vertex Colors for FEA Stress Heatmap
             const spineMat = new THREE.MeshStandardMaterial({
                 color: 0xffffff,
                 vertexColors: true,
@@ -730,31 +640,60 @@
             rightSpineMesh.castShadow = true;
             rightSpineMesh.receiveShadow = true;
 
-            leftSpineMesh.position.set(0, -spineHeightM / 2, -spineSpacing / 2);
-            rightSpineMesh.position.set(0, -spineHeightM / 2, spineSpacing / 2);
+            leftSpineMesh.position.set(0, 0, -spineSpacing / 2);
+            rightSpineMesh.position.set(0, 0, spineSpacing / 2);
 
             scene.add(leftSpineMesh);
             scene.add(rightSpineMesh);
 
-            // Create Perpendicular Deck Slats with high segment density across Z for local bending
-            const slatLength = DECK_WIDTH;
-            const slatWidth = (BEAM_SPAN / slatCount) * 0.82;
-            const slatGeo = new THREE.BoxGeometry(slatWidth, slatThickM, slatLength, 1, 1, SLAT_TRANSVERSE_SEGMENTS);
+            // Create Surrounding Vertical Outline Slats (Rectangles with Central Hole via Shape Geometry extruded)
+            const slatWidth = (BEAM_SPAN / slatCount) * 0.85;
+            const frameHeight = spineHeightM * 1.35;
+            const frameWidth = DECK_WIDTH * 1.15;
+
+            // Define shape for surrounding outline with central cutout hole
+            const outerW = frameWidth;
+            const outerH = frameHeight;
+            const innerW = spineSpacing * 0.85;
+            const innerH = spineHeightM * 0.95;
+
+            const shape = new THREE.Shape();
+            shape.moveTo(-outerW / 2, -outerH / 2);
+            shape.lineTo(outerW / 2, -outerH / 2);
+            shape.lineTo(outerW / 2, outerH / 2);
+            shape.lineTo(-outerW / 2, outerH / 2);
+            shape.closePath();
+
+            const holePath = new THREE.Path();
+            holePath.moveTo(-innerW / 2, -innerH / 2);
+            holePath.lineTo(-innerW / 2, innerH / 2);
+            holePath.lineTo(innerW / 2, innerH / 2);
+            holePath.lineTo(innerW / 2, -innerH / 2);
+            holePath.closePath();
+            shape.holes.push(holePath);
+
+            const extrudeSettings = {
+                steps: 1,
+                depth: slatThickM,
+                bevelEnabled: true,
+                bevelThickness: 0.005,
+                bevelSize: 0.005,
+                bevelSegments: 2
+            };
+
+            const slatGeo = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+            slatGeo.center();
 
             const slatMat = new THREE.MeshStandardMaterial({
                 color: 0x334155,
-                metalness: 0.2,
-                roughness: 0.6,
+                metalness: 0.3,
+                roughness: 0.5,
                 vertexColors: true
             });
 
-            // Fastener Nut Geometry
-            const boltGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.03, 12);
-            const jointType = document.getElementById('param-joint-type').value;
-            let boltColor = 0x38bdf8;
-            if (jointType === 'clamped') boltColor = 0xf59e0b;
-            if (jointType === 'elastomeric') boltColor = 0x10b981;
-            const boltMat = new THREE.MeshStandardMaterial({ color: boltColor, metalness: 0.8, roughness: 0.2 });
+            // Rubber Hinge Connector Geometry
+            const hingeGeo = new THREE.CylinderGeometry(0.03, 0.03, spineSpacing * 1.1, 12);
+            const hingeMat = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.9, metalness: 0.0 });
 
             const startX = -BEAM_SPAN / 2 + slatWidth / 2;
             const stepX = BEAM_SPAN / slatCount;
@@ -762,28 +701,28 @@
             for (let i = 0; i < slatCount; i++) {
                 const posX = startX + i * stepX;
                 const slatMesh = new THREE.Mesh(slatGeo.clone(), slatMat.clone());
-                slatMesh.position.set(posX, slatThickM / 2, 0);
+                slatMesh.rotation.y = Math.PI / 2; // Orient perpendicular across the length
+                slatMesh.position.set(posX, 0, 0);
                 slatMesh.castShadow = true;
                 slatMesh.receiveShadow = true;
                 scene.add(slatMesh);
                 deckSlatGroup.push(slatMesh);
 
-                // Two fasteners per slat (above Left and Right spines)
-                const boltLeft = new THREE.Mesh(boltGeo, boltMat);
-                const boltRight = new THREE.Mesh(boltGeo, boltMat);
-                boltLeft.position.set(posX, slatThickM + 0.015, -spineSpacing / 2);
-                boltRight.position.set(posX, slatThickM + 0.015, spineSpacing / 2);
-                scene.add(boltLeft);
-                scene.add(boltRight);
-                fastenerNutGroup.push(boltLeft, boltRight);
+                // Alternating zig-zag rubber hinge connections between adjacent slats
+                if (i < slatCount - 1) {
+                    const hinge = new THREE.Mesh(hingeGeo, hingeMat);
+                    hinge.rotation.x = Math.PI / 2;
+                    const attachOffsetZ = (i % 2 === 0) ? -DECK_WIDTH * 0.55 : DECK_WIDTH * 0.55;
+                    hinge.position.set(posX + stepX / 2, 0, attachOffsetZ);
+                    scene.add(hinge);
+                    rubberHingeGroup.push(hinge);
+                }
             }
 
-            // Create Support Pillars & Reaction Arrows
             createSupports();
 
-            // Load Indicator Arrow and Ground Ring
             const arrowGeo = new THREE.ConeGeometry(0.12, 0.4, 16);
-            arrowGeo.rotateX(Math.PI); // Point down
+            arrowGeo.rotateX(Math.PI);
             const arrowMat = new THREE.MeshStandardMaterial({ color: 0xf43f5e, emissive: 0x881337, roughness: 0.2 });
             loadArrowMesh = new THREE.Mesh(arrowGeo, arrowMat);
             scene.add(loadArrowMesh);
@@ -809,7 +748,7 @@
                 supportXPositions = [-BEAM_SPAN * 0.3, BEAM_SPAN * 0.3];
             }
 
-            const arrowGeo = new THREE.ConeGeometry(0.08, 0.25, 12); // Upward Reaction Arrow
+            const arrowGeo = new THREE.ConeGeometry(0.08, 0.25, 12);
             const arrowMat = new THREE.MeshStandardMaterial({ color: 0x10b981, emissive: 0x065f46 });
 
             supportXPositions.forEach(x => {
@@ -821,7 +760,6 @@
                     scene.add(pillar);
                     supportPillars.push(pillar);
 
-                    // Upward reaction arrow pointing into beam
                     const rxArrow = new THREE.Mesh(arrowGeo, arrowMat);
                     rxArrow.position.set(x, -0.2, z);
                     scene.add(rxArrow);
@@ -829,177 +767,13 @@
                 });
             });
         }
-
-        function solveStructuralMechanics() {
-            const matKey = document.getElementById('param-spine-material').value;
-            const mat = MATERIALS[matKey];
-            const profile = document.getElementById('param-spine-profile').value;
-            const supportType = document.getElementById('param-support-type').value;
-            const loadType = document.getElementById('param-load-type').value;
-            
-            const spineSpacing = parseFloat(document.getElementById('param-spine-spacing').value);
-            const spineHeightMm = parseFloat(document.getElementById('param-spine-height').value);
-            const spineHeightM = spineHeightMm / 1000;
-            const spineWidthM = spineHeightM * 0.5;
-
-            const forceKn = parseFloat(document.getElementById('param-force-mag').value);
-            const forceN = forceKn * 1000;
-
-            const loadPosXPct = parseFloat(document.getElementById('param-load-pos-x').value) / 100;
-            const loadOffsetPosY = parseFloat(document.getElementById('param-load-pos-y').value); // -1.0 to 1.0 m
-
-            // Moment of Inertia I (m^4) for one spine
-            let I = 0;
-            let c = spineHeightM / 2; // Distance to outer fiber
-            if (profile === 'ibeam') {
-                const b = spineWidthM, h = spineHeightM, t = spineHeightM * 0.12;
-                I = (b * Math.pow(h, 3) - (b - t) * Math.pow(h - 2 * t, 3)) / 12;
-            } else if (profile === 'box') {
-                const b = spineWidthM, h = spineHeightM, t = spineHeightM * 0.15;
-                I = (b * Math.pow(h, 3) - (b - 2 * t) * Math.pow(h - 2 * t, 3)) / 12;
-            } else { // Pipe / Solid Rod
-                const r = spineHeightM / 2;
-                I = (Math.PI * Math.pow(r, 4)) / 4;
-            }
-
-            // Load Sharing between Left and Right spines based on transverse eccentricity
-            let shareLeft = 0.5 - (loadOffsetPosY / (2 * spineSpacing));
-            let shareRight = 0.5 + (loadOffsetPosY / (2 * spineSpacing));
-            shareLeft = Math.max(0.05, Math.min(0.95, shareLeft));
-            shareRight = Math.max(0.05, Math.min(0.95, shareRight));
-
-            const P_left = forceN * shareLeft;
-            const P_right = forceN * shareRight;
-
-            const N = SPAN_NUM_SEGMENTS;
-            const L = BEAM_SPAN;
-            const defLeft = new Float32Array(N + 1);
-            const defRight = new Float32Array(N + 1);
-            const momentLeft = new Float32Array(N + 1);
-            const momentRight = new Float32Array(N + 1);
-            const shearLeft = new Float32Array(N + 1);
-            const shearRight = new Float32Array(N + 1);
-
-            const loadX = loadPosXPct * L; // Absolute load position from left end (0 to L)
-
-            for (let i = 0; i <= N; i++) {
-                const x = (i / N) * L;
-
-                // Compute deflection y(x), Bending Moment M(x), and Shear Force V(x)
-                let [vL, mL, sL] = computePointDeflectionMomentShear(x, loadX, L, P_left, mat.E, I, supportType, loadType);
-                let [vR, mR, sR] = computePointDeflectionMomentShear(x, loadX, L, P_right, mat.E, I, supportType, loadType);
-
-                defLeft[i] = vL;
-                defRight[i] = vR;
-                momentLeft[i] = mL;
-                momentRight[i] = mR;
-                shearLeft[i] = sL;
-                shearRight[i] = sR;
-            }
-
-            // Calculate Reaction Forces R1 and R2
-            let R1 = 0, R2 = 0;
-            if (loadType === 'distributed') {
-                R1 = forceN / 2;
-                R2 = forceN / 2;
-            } else {
-                R1 = forceN * (1 - loadPosXPct);
-                R2 = forceN * loadPosXPct;
-            }
-
-            // Calculate Max Deflection, Stress, Safety Factor
-            let maxDefL = 0, maxDefR = 0, maxMomL = 0, maxMomR = 0;
-            for (let i = 0; i <= N; i++) {
-                if (Math.abs(defLeft[i]) > maxDefL) maxDefL = Math.abs(defLeft[i]);
-                if (Math.abs(defRight[i]) > maxDefR) maxDefR = Math.abs(defRight[i]);
-                if (Math.abs(momentLeft[i]) > maxMomL) maxMomL = Math.abs(momentLeft[i]);
-                if (Math.abs(momentRight[i]) > maxMomR) maxMomR = Math.abs(momentRight[i]);
-            }
-
-            const maxDeflectionM = Math.max(maxDefL, maxDefR);
-            const maxMomentNm = Math.max(maxMomL, maxMomR);
-
-            // Bending Stress σ = M * c / I
-            const maxStressPa = (maxMomentNm * c) / I;
-            const maxStressMpa = maxStressPa / 1e6;
-            const yieldMpa = mat.yieldStrength / 1e6;
-            const safetyFactor = yieldMpa / (maxStressMpa || 1e-3);
-
-            return {
-                defLeft, defRight,
-                momentLeft, momentRight,
-                shearLeft, shearRight,
-                R1, R2,
-                maxDeflectionMm: maxDeflectionM * 1000,
-                maxStressMpa,
-                yieldMpa,
-                safetyFactor,
-                loadX,
-                loadOffsetPosY,
-                forceN
-            };
-        }
-
-        function computePointDeflectionMomentShear(x, a, L, P, E, I, supportType, loadType) {
-            let v = 0; // Downward deflection (m)
-            let M = 0; // Bending Moment (Nm)
-            let V = 0; // Shear Force (N)
-
-            if (loadType === 'distributed') {
-                const q = P / L;
-                if (supportType === 'fixed') {
-                    v = (q * Math.pow(x, 2) * Math.pow(L - x, 2)) / (24 * E * I);
-                    M = Math.abs((q / 12) * (6 * x * L - 6 * Math.pow(x, 2) - Math.pow(L, 2)));
-                    V = Math.abs(q * (L / 2 - x));
-                } else {
-                    v = (q * x * (Math.pow(L, 3) - 2 * L * Math.pow(x, 2) + Math.pow(x, 3))) / (24 * E * I);
-                    M = Math.abs((q * x * (L - x)) / 2);
-                    V = Math.abs(q * (L / 2 - x));
-                }
-                return [Math.max(0, v), M, V];
-            }
-
-            const b = L - a;
-
-            if (supportType === 'fixed') {
-                const R1 = (P * Math.pow(b, 2) * (3 * a + b)) / Math.pow(L, 3);
-                const R2 = (P * Math.pow(a, 2) * (3 * b + a)) / Math.pow(L, 3);
-                if (x <= a) {
-                    v = (P * Math.pow(b, 2) * Math.pow(x, 2) * (3 * a * L - (3 * a + b) * x)) / (6 * E * I * Math.pow(L, 3));
-                    const M1 = (P * a * Math.pow(b, 2)) / Math.pow(L, 2);
-                    M = Math.abs(R1 * x - M1);
-                    V = R1;
-                } else {
-                    v = (P * Math.pow(a, 2) * Math.pow(L - x, 2) * (3 * b * L - (3 * b + a) * (L - x))) / (6 * E * I * Math.pow(L, 3));
-                    const M2 = (P * b * Math.pow(a, 2)) / Math.pow(L, 2);
-                    M = Math.abs(R2 * (L - x) - M2);
-                    V = -R2;
-                }
-            } else { // Simply Supported Pin-Roller
-                const R1 = (P * b) / L;
-                const R2 = (P * a) / L;
-                if (x <= a) {
-                    v = (P * b * x * (Math.pow(L, 2) - Math.pow(b, 2) - Math.pow(x, 2))) / (6 * E * I * L);
-                    M = (P * b * x) / L;
-                    V = R1;
-                } else {
-                    v = (P * a * (L - x) * (Math.pow(L, 2) - Math.pow(a, 2) - Math.pow(L - x, 2))) / (6 * E * I * L);
-                    M = (P * a * (L - x)) / L;
-                    V = -R2;
-                }
-            }
-
-            return [Math.max(0, v), Math.abs(M), Math.abs(V)];
-        }
-
+<!-- ... --><!-- ... existing code ... -->
         function updateSimulation() {
-            // Read visual UI controls
             const spineSpacing = parseFloat(document.getElementById('param-spine-spacing').value);
             const spineHeightMm = parseFloat(document.getElementById('param-spine-height').value);
             const visScale = parseFloat(document.getElementById('param-deflection-scale').value);
             const loadType = document.getElementById('param-load-type').value;
 
-            // Update UI Labels
             document.getElementById('val-spine-spacing').innerText = spineSpacing.toFixed(1) + ' m';
             document.getElementById('val-spine-height').innerText = spineHeightMm.toFixed(0) + ' mm';
             document.getElementById('val-slat-count').innerText = document.getElementById('param-slat-count').value + ' units';
@@ -1016,27 +790,19 @@
             const posYVal = parseFloat(document.getElementById('param-load-pos-y').value);
             document.getElementById('val-load-pos-y').innerText = posYVal === 0 ? 'Centered (0.0 m)' : posYVal.toFixed(1) + ' m';
 
-            // Show/Hide Load Position Sliders based on load type
             document.getElementById('wrapper-load-pos-x').style.display = (loadType === 'distributed') ? 'none' : 'block';
             document.getElementById('wrapper-load-pos-y').style.display = (loadType === 'distributed') ? 'none' : 'block';
 
-            // Re-build geometry if count/spacing/material changes
             createStructuralGeometry();
 
-            // Run FEA Solver
             const results = solveStructuralMechanics();
 
-            // Deform Left & Right Spine WebGL Box Mesh Vertices
             deformSpineMesh(leftSpineMesh, results.defLeft, results.momentLeft, results.yieldMpa, visScale);
             deformSpineMesh(rightSpineMesh, results.defRight, results.momentRight, results.yieldMpa, visScale);
 
-            // Deform Deck Slats & Fasteners with transverse depression and bending
-            positionAndDeformDeckSlats(results, visScale);
-
-            // Render live 2D cross section preview canvas
+            positionAndDeformSurroundingSlats(results, visScale);
             renderCrossSectionStress(results.maxStressMpa, results.yieldMpa);
 
-            // Calculate exact deck surface elevation at the point of load application
             const loadX = results.loadX - BEAM_SPAN / 2;
             const loadYOffset = results.loadOffsetPosY;
 
@@ -1044,20 +810,12 @@
             const idxLoad = Math.min(SPAN_NUM_SEGMENTS, Math.max(0, Math.round(normLoadX * SPAN_NUM_SEGMENTS)));
             const defAtLoadL = results.defLeft[idxLoad];
             const defAtLoadR = results.defRight[idxLoad];
+            const avgDefAtLoad = ((defAtLoadL + defAtLoadR) / 2) * visScale;
 
-            // Local transverse deflection boost on deck skin directly under point load
-            const flexFactor = parseFloat(document.getElementById('param-slat-flex').value);
-            const localDepression = (loadType === 'distributed') ? 0.005 : (results.forceN / 1500000) * flexFactor;
+            const deckSurfaceY = (spineHeightMm / 2000) * 1.35 - avgDefAtLoad;
 
-            const shareRightNorm = Math.max(0, Math.min(1, (loadYOffset + DECK_WIDTH / 2) / DECK_WIDTH));
-            const avgDefAtLoad = (defAtLoadL * (1 - shareRightNorm) + defAtLoadR * shareRightNorm + localDepression) * visScale;
-
-            const slatThickM = parseFloat(document.getElementById('param-slat-thickness').value) / 1000;
-            const deckSurfaceY = slatThickM - avgDefAtLoad;
-
-            // Attach load arrow and indicator ring directly to depressed deck surface
-            loadArrowMesh.position.set(loadX, deckSurfaceY + 0.35, loadYOffset);
-            loadMarkerMesh.position.set(loadX, deckSurfaceY + 0.005, loadYOffset);
+            loadArrowMesh.position.set(loadX, deckSurfaceY + 0.5, loadYOffset);
+            loadMarkerMesh.position.set(loadX, deckSurfaceY + 0.01, loadYOffset);
 
             if (loadType === 'distributed' || foldProgress > 0.05) {
                 loadArrowMesh.visible = false;
@@ -1067,18 +825,15 @@
                 loadMarkerMesh.visible = true;
             }
 
-            // Apply Assembly Folding state if fold progress > 0
             if (foldProgress > 0) {
                 applyAssemblyFolding(foldProgress);
             }
 
-            // Scale Support Reaction Arrows based on force
             reactionForceArrows.forEach(arrow => {
                 const scaleY = Math.max(0.4, (results.forceN / 30000) * 1.5);
                 arrow.scale.set(1, scaleY, 1);
             });
 
-            // Update Top HUD Telemetry
             document.getElementById('hud-deflection').innerText = results.maxDeflectionMm.toFixed(2) + ' mm';
             document.getElementById('hud-stress').innerText = results.maxStressMpa.toFixed(1) + ' MPa';
             document.getElementById('hud-reactions').innerText = (results.R1 / 1000).toFixed(1) + ' kN / ' + (results.R2 / 1000).toFixed(1) + ' kN';
@@ -1106,68 +861,12 @@
                 failureBanner.classList.add('hidden');
             }
 
-            // Update Real-Time Chart.js Telemetry Graph
             updateChartData(results);
         }
 
-        function deformSpineMesh(spineMesh, defArray, momentArray, yieldMpa, scale) {
-            const posAttr = spineMesh.geometry.attributes.position;
-            const colorAttr = new THREE.BufferAttribute(new Float32Array(posAttr.count * 3), 3);
-
-            const matKey = document.getElementById('param-spine-material').value;
-            const baseColor = new THREE.Color(MATERIALS[matKey].color);
-
-            for (let i = 0; i < posAttr.count; i++) {
-                const xPos = posAttr.getX(i);
-                const normX = (xPos + BEAM_SPAN / 2) / BEAM_SPAN;
-                const idx = Math.min(SPAN_NUM_SEGMENTS, Math.max(0, Math.round(normX * SPAN_NUM_SEGMENTS)));
-
-                const deflection = defArray[idx];
-                const moment = momentArray[idx];
-
-                const origY = posAttr.getY(i);
-                const deformedY = origY - (deflection * scale);
-                posAttr.setY(i, deformedY);
-
-                let vertexColor = baseColor.clone();
-                if (stressHeatmapActive) {
-                    const spineHeightMm = parseFloat(document.getElementById('param-spine-height').value);
-                    const spineHeightM = spineHeightMm / 1000;
-                    const c = spineHeightM / 2;
-                    const I = (spineHeightM * Math.pow(spineHeightM, 3)) / 12;
-                    const stressMpa = ((moment * c) / I) / 1e6;
-                    const ratio = Math.min(1.2, stressMpa / yieldMpa);
-
-                    if (ratio < 0.2) {
-                        vertexColor.setHSL(0.6 - ratio * 0.5, 0.9, 0.5);
-                    } else if (ratio < 0.7) {
-                        vertexColor.setHSL(0.5 - (ratio - 0.2) * 0.7, 1.0, 0.5);
-                    } else {
-                        vertexColor.setHSL(0.15 - Math.min(0.15, (ratio - 0.7) * 0.5), 1.0, 0.5);
-                    }
-                }
-
-                colorAttr.setXYZ(i, vertexColor.r, vertexColor.g, vertexColor.b);
-            }
-
-            posAttr.needsUpdate = true;
-            spineMesh.geometry.setAttribute('color', colorAttr);
-            spineMesh.geometry.attributes.color.needsUpdate = true;
-            spineMesh.geometry.computeVertexNormals();
-        }
-
-        function positionAndDeformDeckSlats(results, scale) {
+        function positionAndDeformSurroundingSlats(results, scale) {
             const slatCount = deckSlatGroup.length;
             const spineSpacing = parseFloat(document.getElementById('param-spine-spacing').value);
-            const slatThickMm = parseFloat(document.getElementById('param-slat-thickness').value);
-            const slatThickM = slatThickMm / 1000;
-
-            const flexFactor = parseFloat(document.getElementById('param-slat-flex').value);
-            const loadType = document.getElementById('param-load-type').value;
-
-            const loadXPct = parseFloat(document.getElementById('param-load-pos-x').value) / 100;
-            const loadYOffset = results.loadOffsetPosY;
-            const loadX = (loadXPct - 0.5) * BEAM_SPAN;
 
             deckSlatGroup.forEach((slatMesh, i) => {
                 const normX = i / (slatCount - 1);
@@ -1175,56 +874,53 @@
 
                 const vL = results.defLeft[idx] * scale;
                 const vR = results.defRight[idx] * scale;
-
                 const avgDef = (vL + vR) / 2;
                 const rollAngle = Math.atan2(vL - vR, spineSpacing);
 
-                slatMesh.position.y = (slatThickM / 2) - avgDef;
-                slatMesh.rotation.x = rollAngle;
+                slatMesh.position.y = -avgDef;
+                slatMesh.rotation.z = -rollAngle; // Bank outline slat with spine differential deflection
 
-                const posAttr = slatMesh.geometry.attributes.position;
-                const colorAttr = new THREE.BufferAttribute(new Float32Array(posAttr.count * 3), 3);
-
-                const slatX = slatMesh.position.x;
-                const distToLoadX = Math.abs(slatX - loadX);
-                const isNearLoadX = distToLoadX < (BEAM_SPAN / slatCount) * 1.5;
-
-                for (let k = 0; k < posAttr.count; k++) {
-                    const localZ = posAttr.getZ(k);
-                    const origY = posAttr.getY(k);
-
-                    let localFlexDepression = 0;
-                    if (loadType === 'distributed') {
-                        const normZ = Math.abs(localZ) / (DECK_WIDTH / 2);
-                        localFlexDepression = (1 - Math.pow(normZ, 2)) * 0.008 * flexFactor * scale;
-                    } else if (isNearLoadX) {
-                        const distToLoadY = Math.abs(localZ - loadYOffset);
-                        const bellSpread = 0.6;
-                        const bellFactor = Math.exp(-Math.pow(distToLoadY / bellSpread, 2));
-                        localFlexDepression = bellFactor * (results.forceN / 250000) * flexFactor * scale;
-                    }
-
-                    posAttr.setY(k, origY - localFlexDepression);
-
-                    let slatColor = new THREE.Color(0x334155);
-                    if (stressHeatmapActive && localFlexDepression > 0.002) {
-                        const bendRatio = Math.min(1.0, localFlexDepression * 20);
-                        slatColor.setHSL(0.55 - bendRatio * 0.5, 0.8, 0.45);
-                    }
-                    colorAttr.setXYZ(k, slatColor.r, slatColor.g, slatColor.b);
+                // Rubber hinge zigzag shift
+                const hinge = rubberHingeGroup[i];
+                if (hinge) {
+                    const stepX = BEAM_SPAN / slatCount;
+                    const startX = -BEAM_SPAN / 2 + ((BEAM_SPAN / slatCount) * 0.85) / 2;
+                    const posX = startX + i * stepX;
+                    const attachOffsetZ = (i % 2 === 0) ? -DECK_WIDTH * 0.55 : DECK_WIDTH * 0.55;
+                    hinge.position.set(posX + stepX / 2, -avgDef, attachOffsetZ);
                 }
+            });
+        }
+<!-- ... --><!-- ... existing code ... -->
+        function applyAssemblyFolding(progress) {
+            const p = Math.max(0, Math.min(1, progress));
+            const slatCount = deckSlatGroup.length;
 
-                posAttr.needsUpdate = true;
-                slatMesh.geometry.setAttribute('color', colorAttr);
-                slatMesh.geometry.attributes.color.needsUpdate = true;
-                slatMesh.geometry.computeVertexNormals();
+            leftSpineMesh.position.set(0, 0, -parseFloat(document.getElementById('param-spine-spacing').value) / 2);
+            leftSpineMesh.rotation.set(0, 0, 0);
 
-                const bLeft = fastenerNutGroup[i * 2];
-                const bRight = fastenerNutGroup[i * 2 + 1];
+            rightSpineMesh.position.set(0, 0, parseFloat(document.getElementById('param-spine-spacing').value) / 2);
+            rightSpineMesh.rotation.set(0, 0, 0);
 
-                if (bLeft && bRight) {
-                    bLeft.position.y = slatThickM + 0.015 - vL;
-                    bRight.position.y = slatThickM + 0.015 - vR;
+            const totalWidth = BEAM_SPAN;
+            const compressedWidth = totalWidth * (1 - p * 0.85);
+            const startX = -BEAM_SPAN / 2;
+
+            deckSlatGroup.forEach((slat, i) => {
+                const norm = i / (slatCount - 1);
+                const targetX = (norm - 0.5) * compressedWidth;
+                const stackHeight = i * 0.02 * p;
+                const zigzagAngle = (i % 2 === 0 ? 1 : -1) * p * 1.2;
+
+                slat.position.x = targetX;
+                slat.position.y = stackHeight;
+                slat.position.z = 0;
+                slat.rotation.set(0, Math.PI / 2 + zigzagAngle, 0);
+
+                const hinge = rubberHingeGroup[i];
+                if (hinge) {
+                    hinge.position.set(targetX + 0.1, stackHeight, (i % 2 === 0) ? -0.2 : 0.2);
+                    hinge.rotation.set(0, 0, zigzagAngle);
                 }
             });
         }
